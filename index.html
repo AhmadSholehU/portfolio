@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendi Ahmad - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        .link-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -2px;
+            background: black;
+            transition: width 0.3s ease;
+        }
+
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        /* Track */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Slide */
+        .carousel-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.5;
+            transform: scale(0.9);
+        }
+
+        .carousel-slide.current-slide {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Project Card */
+        .project-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #111827;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #374151;
+        }
+
+        /* Nav buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 2rem;
+            padding: 5px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        /* Indicators */
+        .carousel-nav {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .carousel-indicator {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            border-radius: 50%;
+            border: none;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        .carousel-indicator.current-slide {
+            background: #111827;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
+        <h1 class="text-2xl font-bold">Hendi Ahmad</h1>
+        <nav class="hidden md:flex space-x-6">
+            <a href="#about" class="link-underline hover:text-black transition">About</a>
+            <a href="#experience" class="link-underline hover:text-black transition">Experience</a>
+            <a href="#projects" class="link-underline hover:text-black transition">Projects</a>
+            <a href="#contact" class="link-underline hover:text-black transition">Contact</a>
+        </nav>
+        <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">☰</button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu"
+        class="hidden fixed top-[64px] left-0 w-full flex-col bg-white shadow-md px-6 py-4 space-y-3 md:hidden z-40">
+        <a href="#about" class="link-underline hover:text-black transition">About</a>
+        <a href="#experience" class="link-underline hover:text-black transition">Experience</a>
+        <a href="#projects" class="link-underline hover:text-black transition">Projects</a>
+        <a href="#contact" class="link-underline hover:text-black transition">Contact</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="container mx-auto px-6 py-16 text-center">
+        <h2 class="text-4xl font-bold mb-4 text-gray-900">Hi, I’m a Mobile Developer 🚀</h2>
+        <p class="text-lg text-gray-600 mb-6">Seseorang dengan passion untuk Android & Kotlin.</p>
+        <a href="#projects" class="group relative px-6 py-3 rounded-xl shadow-md bg-gray-900 text-white
+              hover:bg-gray-700 hover:scale-105 transition transform overflow-hidden">
+            <span class="relative z-10">Lihat Project</span>
+            <span
+                class="absolute inset-0 bg-white opacity-20 scale-0 group-hover:scale-150 transition-transform duration-500"></span>
+        </a>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container mx-auto px-6 py-16 text-center reveal">
+        <h2 class="text-3xl font-bold mb-4">About Me</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            Saya seorang yang fokus di bidang mobile development menggunakan Kotlin.
+            Saya senang membangun aplikasi Android yang clean, scalable, dan user-friendly.
+        </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="container mx-auto px-6 py-16 reveal">
+        <h2 class="text-3xl font-bold mb-6 text-center">Experience</h2>
+        <div class="space-y-6 max-w-3xl mx-auto">
+
+            <!-- Exp 1 -->
+            <div
+                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
+                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
+                <p class="text-gray-500 text-sm">Jan 2020 - Mar 2020 • CV.Can Creative, Semarang</p>
+                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
+                    <li>Mobile Development Introduction</li>
+                    <li>Fundamental Layouting</li>
+                    <li>API Consumption</li>
+                    <li>Collaboration Skills</li>
+                    <li>Software Development Industry Environment</li>
+                </ul>
+            </div>
+
+            <!-- Exp 2 -->
+            <div
+                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
+                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
+                <p class="text-gray-500 text-sm">Feb 2024 - Jun 2024 • MSIB BATCH 6 at LLDIKTI V YOGYAKARTA</p>
+                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
+                    <li>Developing the EVIRA mobile application</li>
+                    <li>Consuming APIs</li>
+                    <li>Collaboration skills</li>
+                    <li>Software development in government institutions</li>
+                    <li>Handling large data consumption from the API</li>
+                </ul>
+            </div>
+
+            <!-- Exp 3 -->
+            <div
+                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
+                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
+                <p class="text-gray-500 text-sm">Sept 2024 - Jan 2025 • Reguler Internship at BKPP Kota Semarang</p>
+                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
+                    <li>Developing the Diklatku mobile application</li>
+                    <li>Consuming APIs</li>
+                    <li>Collaboration skills</li>
+                    <li>Software development in government institutions</li>
+                    <li>Using a new tech stack for development</li>
+                    <li>Integrating with third party apps</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
+        <div class="carousel">
+            <button class="carousel-btn prev">&#10094;</button>
+            <div class="carousel-track-container">
+                <ul class="carousel-track">
+                    <li class="carousel-slide current-slide">
+                        <div class="project-card">
+                            <img src="img_quizout.png" alt="Project Screenshot">
+                            <h3>QuizOut</h3>
+                            <p>Aplikasi kuis dan edukasi, dibangun dengan bahasa Java</p>
+                            <a href="https://github.com/AhmadSholehU/" target="_blank" class="btn">View on GitHub</a>
+                        </div>
+                    </li>
+                    <li class="carousel-slide">
+                        <div class="project-card">
+                            <img src="img_fittrack.png" alt="Project Screenshot">
+                            <h3>FitTrack</h3>
+                            <p>Aplikasi tracking kebugaran, aktifitas dan konsumsi harian</p>
+                            <a href="https://github.com/AhmadSholehU/FitTrack" target="_blank" class="btn">View on
+                                GitHub</a>
+                        </div>
+                    </li>
+                    <li class="carousel-slide">
+                        <div class="project-card">
+                            <img src="img_leafapp.png" alt="Project Screenshot">
+                            <h3>LeafApp</h3>
+                            <p>Aplikasi sederhana untuk deteksi penyakit daun padi dengan implementasi TensorFlow Lite
+                            </p>
+
+                            <a href="https://github.com/AhmadSholehU/LeafApp" target="_blank" class="btn">View on
+                                GitHub</a>
+                        </div>
+                    </li>
+                    <li class="carousel-slide">
+                        <div class="project-card">
+                            <img src="img_evira.png" alt="Project Screenshot">
+                            <h3>EVIRA</h3>
+                            <p>Aplikasi untuk Evaluasi, Verifikasi, dan Analisis Data Perguruan Tinggi
+                                Swasta LLDIKTI Wilayah V YOGYAKARTA</p>
+                            <a href="https://github.com/AhmadSholehU/Evira-mobile" target="_blank" class="btn">View on
+                                GitHub</a>
+                        </div>
+                    </li>
+                    <li class="carousel-slide">
+                        <div class="project-card">
+                            <img src="img_diklatku.png" alt="Project Screenshot">
+                            <h3>DiklatKu</h3>
+                            <p>Aplikasi untuk monitoring dan penyewaan balai diklat BKPP kota Semarang</p>
+                            <a href="https://github.com/AhmadSholehU/Reservation-app" target="_blank" class="btn">View
+                                on GitHub</a>
+                        </div>
+                    </li>
+                    <li class="carousel-slide">
+                        <div class="project-card">
+                            <img src="img_arhybe.png" alt="Project Screenshot">
+                            <h3>ArhyBe</h3>
+                            <p>Aplikasi untuk monitoring dan klassifikasi jenis aritmia dengan integrasi AIoT</p>
+
+                            <a href="https://github.com/AhmadSholehU/ArhyBe" target="_blank" class="btn">View on
+                                GitHub</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="carousel-btn next">&#10095;</button>
+        </div>
+        <div class="carousel-nav">
+            <button class="carousel-indicator current-slide"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container mx-auto px-6 py-16 text-center reveal">
+        <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
+        <p class="text-gray-600 mb-6">Tertarik bekerja sama? Hubungi saya melalui email.</p>
+        <a href="mailto:hendisholeh1@gmail.com"
+            class="px-6 py-3 rounded-xl shadow-md bg-gray-900 text-white hover:bg-gray-700 hover:scale-105 transition transform">
+            Kirim Email
+        </a>
+    </section>
+
+    <footer class="text-center py-6 bg-white text-gray-500">
+        © 2025 My Portfolio. All rights reserved.
+    </footer>
+
+    <!-- Script -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        ScrollReveal().reveal('.reveal', {
+            distance: '40px',
+            duration: 1000,
+            easing: 'ease-out',
+            origin: 'bottom',
+            interval: 200
+        });
+
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-btn.next');
+        const prevButton = document.querySelector('.carousel-btn.prev');
+        const dotsNav = document.querySelector('.carousel-nav');
+        const dots = Array.from(dotsNav.children);
+
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            track.style.transform = `translateX(-${index * 100}%)`;
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('current-slide', i === index);
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('current-slide', i === index);
+            });
+        }
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel(currentIndex);
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel(currentIndex);
+        });
+
+        dotsNav.addEventListener('click', e => {
+            const targetDot = e.target.closest('button');
+            if (!targetDot) return;
+            currentIndex = dots.findIndex(dot => dot === targetDot);
+            updateCarousel(currentIndex);
+        });
+
+        // init
+        updateCarousel(currentIndex);
+    </script>
+
+</body>
+
+</html>
