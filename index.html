@@ -138,10 +138,10 @@
         }
 
         .certificate-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
         }
 
         .certificate-card {
@@ -150,8 +150,15 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 80%;
+            max-width: 900px;
         }
-
+        .certificate-viewer {
+          width: 100%;
+          height: 600px; 
+          border: 1px solid #ccc;
+          border-radius: 8px;
+        }
         .certificate-card h3 {
             margin-bottom: 12px;
         }
@@ -352,7 +359,7 @@
             <div class="certificate-list">
                 <!-- Sertifikat 1 -->
                 <div class="certificate-card">
-                    <embed src="SERTIF.pdf" type="application/pdf" width="70%" height="100%" />
+                    <embed src="SERTIF.pdf" type="application/pdf" class="certificate-viewer" />
                     <a href="SERTIF.pdf" target="_blank" class="btn">View / Download</a>
                 </div>
             </div>
