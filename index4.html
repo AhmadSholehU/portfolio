@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendi Ahmad - Bento Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f7; /* Apple-like light gray background */
+        }
+
+        /* Custom scrollbar for inner scrollable bento boxes */
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+
+        /* Reusable Bento Box Styling */
+        .bento-box {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0,0,0,0.04);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .bento-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+    </style>
+</head>
+
+<body class="text-gray-900 antialiased selection:bg-black selection:text-white">
+
+    <header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/60 border-b border-gray-200/50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
+            <a href="#" class="text-xl font-bold tracking-tight">Hendi Ahmad</a>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-500">
+                <a href="#portfolio" class="hover:text-black transition">Portfolio</a>
+                <a href="mailto:hendisholeh1@gmail.com" class="hover:text-black transition">Contact</a>
+            </div>
+            <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <nav id="mobileMenu" class="hidden fixed top-[60px] left-0 w-full flex-col bg-white/95 backdrop-blur-md px-6 py-4 space-y-4 md:hidden z-40 border-b border-gray-100 font-medium">
+        <a href="#portfolio" class="text-gray-600 hover:text-black">Portfolio</a>
+        <a href="mailto:hendisholeh1@gmail.com" class="text-gray-600 hover:text-black">Contact</a>
+    </nav>
+
+    <main id="portfolio" class="container mx-auto px-4 pt-28 pb-20 max-w-7xl">
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(180px,auto)]">
+
+            <div class="bento-box col-span-1 md:col-span-2 lg:col-span-2 row-span-2 p-8 md:p-10 flex flex-col justify-center reveal">
+                <div class="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-semibold tracking-wide mb-6 w-max">
+                    SOFTWARE ENGINEER
+                </div>
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                    Building scalable mobile & web solutions.
+                </h1>
+                <p class="text-gray-500 text-lg md:text-xl leading-relaxed">
+                    Hi, I'm Hendi. I enjoy designing clean architectures, integrating APIs, and delivering user-friendly applications from startup environments to government institutions.
+                </p>
+            </div>
+
+            <div class="bento-box col-span-1 md:col-span-1 lg:col-span-1 row-span-2 p-6 flex flex-col reveal">
+                <h3 class="font-bold text-lg mb-4">Tech Stack</h3>
+                <div class="flex flex-wrap gap-2 mt-auto">
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">Flutter</span>
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">Nuxt.js</span>
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">Java</span>
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">Linux</span>
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">Firebase</span>
+                    <span class="px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg text-sm font-medium">AIoT</span>
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 lg:col-span-1 row-span-1 p-6 relative overflow-hidden flex flex-col justify-end group reveal bg-blue-50">
+                <div class="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full animate-pulse ring-4 ring-green-500/30"></div>
+                <h3 class="font-bold text-lg z-10">Based in <br>Central Java, ID</h3>
+                <p class="text-sm text-gray-500 mt-1 z-10">Open to work</p>
+                <svg class="absolute -bottom-6 -right-6 w-32 h-32 text-blue-100/50 group-hover:scale-110 transition-transform duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+
+            <div class="bento-box col-span-1 md:col-span-2 lg:col-span-2 row-span-2 p-6 flex flex-col reveal">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg">Experience</h3>
+                    <span class="text-xs font-semibold bg-gray-100 px-2 py-1 rounded-md text-gray-500">Scrollable</span>
+                </div>
+                <div class="flex-1 overflow-y-auto custom-scroll pr-2 space-y-5">
+                    <div class="border-l-2 border-gray-200 pl-4 relative">
+                        <div class="absolute w-2 h-2 bg-black rounded-full -left-[5px] top-1.5"></div>
+                        <h4 class="font-bold text-sm text-gray-900">Field Engineer (Telecom)</h4>
+                        <p class="text-xs text-gray-500 mb-1">Oct '25 - Nov '25 • Poca Group</p>
+                        <p class="text-sm text-gray-600">Hardware installation (RRU, AAU, Microwave) and ground part handling for BTS sites.</p>
+                    </div>
+                    <div class="border-l-2 border-gray-200 pl-4 relative">
+                        <div class="absolute w-2 h-2 bg-gray-300 rounded-full -left-[5px] top-1.5"></div>
+                        <h4 class="font-bold text-sm text-gray-900">Mobile Developer Intern</h4>
+                        <p class="text-xs text-gray-500 mb-1">Sept '24 - Jan '25 • BKPP Kota Semarang</p>
+                        <p class="text-sm text-gray-600">Developing Diklatku app, third-party integration & API consumption.</p>
+                    </div>
+                    <div class="border-l-2 border-gray-200 pl-4 relative">
+                        <div class="absolute w-2 h-2 bg-gray-300 rounded-full -left-[5px] top-1.5"></div>
+                        <h4 class="font-bold text-sm text-gray-900">Mobile Developer Intern</h4>
+                        <p class="text-xs text-gray-500 mb-1">Feb '24 - Jun '24 • LLDIKTI V YOGYAKARTA</p>
+                        <p class="text-sm text-gray-600">Developed EVIRA mobile application handling large scale API data.</p>
+                    </div>
+                    <div class="border-l-2 border-gray-200 pl-4 relative">
+                        <div class="absolute w-2 h-2 bg-gray-300 rounded-full -left-[5px] top-1.5"></div>
+                        <h4 class="font-bold text-sm text-gray-900">Mobile Developer Intern</h4>
+                        <p class="text-xs text-gray-500 mb-1">Jan '20 - Mar '20 • CV. Can Creative</p>
+                        <p class="text-sm text-gray-600">Introduction to mobile dev layouting and APIs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 md:col-span-2 lg:col-span-2 row-span-2 flex flex-col sm:flex-row group reveal">
+                <div class="p-6 sm:w-1/2 flex flex-col justify-center">
+                    <h3 class="font-bold text-xl mb-2">MyFitApp</h3>
+                    <p class="text-gray-500 text-sm mb-4">Aplikasi gym tracker yang dibangun dengan framework Flutter untuk performa tinggi.</p>
+                    <a href="https://github.com/AhmadSholehU/flutter_application_2" target="_blank" class="mt-auto w-max inline-flex items-center text-sm font-semibold text-black hover:underline">
+                        View Code <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+                <div class="bg-gray-100 sm:w-1/2 h-48 sm:h-auto p-4 flex items-center justify-center overflow-hidden">
+                    <img src="img_myfitapp.png" alt="MyFitApp" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-lg">
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 lg:col-span-1 row-span-2 flex flex-col group reveal">
+                <div class="bg-gray-100 h-40 p-4 flex items-center justify-center overflow-hidden">
+                    <img src="img_evira.png" alt="EVIRA" class="h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-md">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-lg mb-1">EVIRA</h3>
+                    <p class="text-gray-500 text-xs mb-4 line-clamp-3">Aplikasi Evaluasi, Verifikasi, dan Analisis Data LLDIKTI V.</p>
+                    <a href="https://github.com/AhmadSholehU/Evira-mobile" target="_blank" class="mt-auto text-sm font-semibold hover:underline">View Code &rarr;</a>
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 lg:col-span-1 row-span-2 flex flex-col group reveal">
+                <div class="bg-gray-100 h-40 p-4 flex items-center justify-center overflow-hidden">
+                    <img src="img_arhybe.png" alt="ArhyBe" class="h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-md">
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-bold text-lg mb-1">ArhyBe</h3>
+                    <p class="text-gray-500 text-xs mb-4 line-clamp-3">Monitoring & klasifikasi jenis aritmia integrasi AIoT.</p>
+                    <a href="https://github.com/AhmadSholehU/ArhyBe" target="_blank" class="mt-auto text-sm font-semibold hover:underline">View Code &rarr;</a>
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 md:col-span-2 lg:col-span-2 row-span-1 p-6 flex flex-col justify-center reveal">
+                <h3 class="font-bold text-lg mb-3">Other Projects</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <a href="https://github.com/AhmadSholehU/LeafApp" target="_blank" class="text-sm font-medium text-gray-600 hover:text-black hover:underline flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg> LeafApp
+                    </a>
+                    <a href="https://github.com/AhmadSholehU/Reservation-app" target="_blank" class="text-sm font-medium text-gray-600 hover:text-black hover:underline flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg> DiklatKu
+                    </a>
+                    <a href="https://github.com/AhmadSholehU/FitTrack" target="_blank" class="text-sm font-medium text-gray-600 hover:text-black hover:underline flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg> FitTrack
+                    </a>
+                    <a href="https://github.com/AhmadSholehU/" target="_blank" class="text-sm font-medium text-gray-600 hover:text-black hover:underline flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg> QuizOut
+                    </a>
+                </div>
+            </div>
+
+            <div class="bento-box col-span-1 lg:col-span-1 row-span-1 p-6 flex flex-col justify-center items-center text-center bg-gray-50 reveal group">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-3 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-1">Certificates</h3>
+                <a href="SERTIF.pdf" target="_blank" class="text-sm font-semibold text-gray-500 hover:text-black hover:underline">View PDF &rarr;</a>
+            </div>
+
+            <div class="bento-box col-span-1 lg:col-span-1 row-span-1 p-6 bg-black text-white flex flex-col justify-center reveal hover:-translate-y-1 transition-transform">
+                <h3 class="font-bold text-xl mb-2">Let's Talk</h3>
+                <p class="text-gray-400 text-xs mb-4">Tertarik bekerja sama? Kirimkan email.</p>
+                <a href="mailto:hendisholeh1@gmail.com" class="inline-flex items-center justify-center w-full py-2.5 bg-white text-black font-semibold rounded-xl text-sm hover:bg-gray-100 transition-colors">
+                    Send Email
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-8 text-gray-400 text-sm font-medium">
+        © 2026 Hendi Ahmad. Styled with Tailwind CSS.
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("flex");
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add("hidden");
+                mobileMenu.classList.remove("flex");
+            });
+        });
+
+        // ScrollReveal
+        ScrollReveal().reveal('.reveal', {
+            distance: '30px',
+            duration: 800,
+            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+            origin: 'bottom',
+            interval: 100
+        });
+    </script>
+</body>
+</html>

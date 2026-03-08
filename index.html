@@ -1,468 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hendi Ahmad - Portfolio</title>
+    <title>Hendi Ahmad - Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <style>
-        .link-underline {
-            position: relative;
-            display: inline-block;
-        }
-
-        .link-underline::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            left: 0;
-            bottom: -2px;
-            background: black;
-            transition: width 0.3s ease;
-        }
-
-        .link-underline:hover::after {
-            width: 100%;
-        }
-
-        .carousel {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
-            overflow: hidden;
-        }
-
-        /* Track */
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        /* Slide */
-        .carousel-slide {
-            min-width: 100%;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            opacity: 0.5;
-            transform: scale(0.9);
-        }
-
-        .carousel-slide.current-slide {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Project Card */
-        .project-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 12px;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 16px;
-            background: #111827;
-            color: #fff;
-            border-radius: 6px;
-            text-decoration: none;
-        }
-
-        .btn:hover {
-            background: #374151;
-        }
-
-        /* Nav buttons */
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-
-            border: none;
-            color: rgb(0, 0, 0);
-            font-size: 2rem;
-            padding: 5px 20px;
-            cursor: pointer;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .carousel-btn.prev {
-            left: 10px;
-        }
-
-        .carousel-btn.next {
-            right: 10px;
-        }
-
-        /* Indicators */
-        .carousel-nav {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .carousel-indicator {
-            height: 10px;
-            width: 10px;
-            margin: 0 5px;
-            border-radius: 50%;
-            border: none;
-            background: #ccc;
-            cursor: pointer;
-        }
-
-        .carousel-indicator.current-slide {
-            background: #111827;
-        }
-
-        #certificates {
-            padding: 60px 20px;
-            background: #f9f9f9;
-        }
-
-        .certificate-list {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .certificate-card {
-            background: #fff;
-            padding: 16px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 80%;
-            max-width: 900px;
-        }
-        .certificate-viewer {
-          width: 100%;
-          height: 600px; 
-          border: 1px solid #ccc;
-          border-radius: 8px;
-        }
-        .certificate-card h3 {
-            margin-bottom: 12px;
-        }
-
-        .certificate-card .btn {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 8px 16px;
-            background: #111;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-        }
-
-        .certificate-card .btn:hover {
-            background: #333;
-        }
+        /* Custom scrollbar adaptif terang/gelap */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #475569; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 dark:selection:bg-blue-900 dark:selection:text-blue-200 transition-colors duration-300 relative">
 
-    <!-- Header -->
-    <header class="flex justify-between items-center px-8 py-4 bg-white shadow-sm sticky top-0 z-50">
-        <h1 class="text-2xl font-bold">Hendi Ahmad</h1>
-        <nav class="hidden md:flex space-x-6">
-            <a href="#about" class="link-underline hover:text-black transition">About</a>
-            <a href="#experience" class="link-underline hover:text-black transition">Experience</a>
-            <a href="#projects" class="link-underline hover:text-black transition">Projects</a>
-            <a href="#contact" class="link-underline hover:text-black transition">Contact</a>
-        </nav>
-        <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">☰</button>
+    <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/70 dark:bg-slate-900/80 border-b border-slate-200/50 dark:border-slate-800/50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-tighter text-slate-900 dark:text-white">
+                Hendi<span class="text-blue-600 dark:text-blue-500">.</span>
+            </a>
+            <nav class="hidden md:flex space-x-8 font-medium text-sm items-center">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
+                <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Experience</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
+                
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 focus:outline-none">
+                    <svg id="sunIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moonIcon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+
+                <a href="#contact" class="px-5 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold rounded-full hover:bg-blue-600 dark:hover:bg-slate-200 shadow-lg transition-all">
+                    Let's Talk
+                </a>
+            </nav>
+            <button id="menuBtn" class="md:hidden text-slate-900 dark:text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <nav id="mobileMenu"
-        class="hidden fixed top-[64px] left-0 w-full flex-col bg-white shadow-md px-6 py-4 space-y-3 md:hidden z-40">
-        <a href="#about" class="link-underline hover:text-black transition">About</a>
-        <a href="#experience" class="link-underline hover:text-black transition">Experience</a>
-        <a href="#projects" class="link-underline hover:text-black transition">Projects</a>
-        <a href="#contact" class="link-underline hover:text-black transition">Contact</a>
+    <nav id="mobileMenu" class="hidden fixed top-[68px] left-0 w-full flex-col bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg px-6 py-6 space-y-4 md:hidden z-40 border-b border-slate-100 dark:border-slate-800">
+        <div class="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-4 mb-2">
+            <span class="font-medium text-slate-700 dark:text-slate-300">Theme</span>
+            <button id="themeToggleMobile" class="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300">
+                <span id="themeTextMobile">Switch</span>
+            </button>
+        </div>
+        <a href="#about" class="font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+        <a href="#experience" class="font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">Experience</a>
+        <a href="#projects" class="font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+        <a href="#contact" class="px-5 py-3 bg-slate-900 dark:bg-blue-600 text-white text-center font-semibold rounded-xl mt-4">Let's Talk</a>
     </nav>
 
-    <!-- Hero -->
-<section class="container mx-auto px-6 py-16 text-center">
-    <h2 class="text-4xl font-bold mb-4 text-gray-900">
-        Hi, I’m a Software Engineer 🚀
-    </h2>
-    <p class="text-lg text-gray-600 mb-6">
-        Passionate about building scalable and user-focused applications
-    </p>
-    <a href="#projects" class="group relative px-6 py-3 rounded-xl shadow-md bg-gray-900 text-white
-          hover:bg-gray-700 hover:scale-105 transition transform overflow-hidden">
-        <span class="relative z-10">View My Projects</span>
-        <span
-            class="absolute inset-0 bg-white opacity-20 scale-0 group-hover:scale-150 transition-transform duration-500"></span>
-    </a>
-</section>
-
-<!-- About -->
-<section id="about" class="container mx-auto px-6 py-16 text-center reveal">
-    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-gray-600 max-w-2xl mx-auto">
-        I enjoy designing clean architectures, integrating APIs, and delivering scalable,
-        maintainable, and user-friendly software solutions.
-    </p>
-</section>
-
-    <!-- Experience -->
-    <section id="experience" class="container mx-auto px-6 py-16 reveal">
-        <h2 class="text-3xl font-bold mb-6 text-center">Experience</h2>
-        <div class="space-y-6 max-w-3xl mx-auto">
-
-            <!-- Exp 1 -->
-            <div
-                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
-                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
-                <p class="text-gray-500 text-sm">Jan 2020 - Mar 2020 • CV.Can Creative, Semarang</p>
-                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
-                    <li>Mobile Development Introduction</li>
-                    <li>Fundamental Layouting</li>
-                    <li>API Consumption</li>
-                    <li>Collaboration Skills</li>
-                    <li>Software Development Industry Environment</li>
-                </ul>
-            </div>
-
-            <!-- Exp 2 -->
-            <div
-                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
-                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
-                <p class="text-gray-500 text-sm">Feb 2024 - Jun 2024 • MSIB BATCH 6 at LLDIKTI V YOGYAKARTA</p>
-                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
-                    <li>Developing the EVIRA mobile application</li>
-                    <li>Consuming APIs</li>
-                    <li>Collaboration skills</li>
-                    <li>Software development in government institutions</li>
-                    <li>Handling large data consumption from the API</li>
-                </ul>
-            </div>
-
-            <!-- Exp 3 -->
-            <div
-                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
-                <h3 class="text-xl font-bold text-gray-900">Mobile Developer Intern</h3>
-                <p class="text-gray-500 text-sm">Sept 2024 - Jan 2025 • Reguler Internship at BKPP Kota Semarang</p>
-                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
-                    <li>Developing the Diklatku mobile application</li>
-                    <li>Consuming APIs</li>
-                    <li>Collaboration skills</li>
-                    <li>Software development in government institutions</li>
-                    <li>Using a new tech stack for development</li>
-                    <li>Integrating with third party apps</li>
-                </ul>
-            </div>
-            <!-- Exp 3 -->
-            <div
-                class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 hover:shadow-xl hover:scale-[1.02] transition transform">
-                <h3 class="text-xl font-bold text-gray-900">Field Engineer (Telecommunication)</h3>
-                <p class="text-gray-500 text-sm">Oct 2025 - Nov 2025 • Poca Group Central Java</p>
-                <ul class="list-disc list-inside text-gray-700 mt-3 space-y-1 text-left">
-                    <li>Performed ground part handling for telecommunication device installations including RRU,
-AAU, Microwave, and similar equipment.</li>
-                    <li>Assembled and installed various connectors for network hardware.</li>
-                    <li>Installed hardware components in BTS sites such as DCDU, MCB, and Rectifier.</li>
-                    <li>Ensured installation quality, device readiness, and proper power/optic routing during
-on-site deployment.</li>
-                   
-                </ul>
-            </div>
+    <section id="about" class="pt-40 pb-20 px-6 max-w-4xl mx-auto text-center reveal">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800/50 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-6">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            Available for new opportunities
         </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="text-3xl font-bold mb-6 text-center">Projects</h2>
-        <div class="carousel">
-            <button class="carousel-btn prev">&#10094;</button>
-            <div class="carousel-track-container">
-                <ul class="carousel-track">
-                    <li class="carousel-slide current-slide">
-                        <div class="project-card">
-                            <img src="img_myfitapp.png" alt="Project Screenshot">
-                            <h3>MyFitApp</h3>
-                            <p>Aplikasi gym tracker, dibangun dengan flutter</p>
-                            <a href="https://github.com/AhmadSholehU/flutter_application_2" target="_blank" class="btn">View on GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide current-slide">
-                        <div class="project-card">
-                            <img src="img_quizout.png" alt="Project Screenshot">
-                            <h3>QuizOut</h3>
-                            <p>Aplikasi kuis dan edukasi, dibangun dengan bahasa Java</p>
-                            <a href="https://github.com/AhmadSholehU/" target="_blank" class="btn">View on GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="project-card">
-                            <img src="img_fittrack.png" alt="Project Screenshot">
-                            <h3>FitTrack</h3>
-                            <p>Aplikasi tracking kebugaran, aktifitas dan konsumsi harian</p>
-                            <a href="https://github.com/AhmadSholehU/FitTrack" target="_blank" class="btn">View on
-                                GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="project-card">
-                            <img src="img_leafapp.png" alt="Project Screenshot">
-                            <h3>LeafApp</h3>
-                            <p>Aplikasi sederhana untuk deteksi penyakit daun padi dengan implementasi TensorFlow Lite
-                            </p>
-
-                            <a href="https://github.com/AhmadSholehU/LeafApp" target="_blank" class="btn">View on
-                                GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="project-card">
-                            <img src="img_evira.png" alt="Project Screenshot">
-                            <h3>EVIRA</h3>
-                            <p>Aplikasi untuk Evaluasi, Verifikasi, dan Analisis Data Perguruan Tinggi
-                                Swasta LLDIKTI Wilayah V YOGYAKARTA</p>
-                            <a href="https://github.com/AhmadSholehU/Evira-mobile" target="_blank" class="btn">View on
-                                GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="project-card">
-                            <img src="img_diklatku.png" alt="Project Screenshot">
-                            <h3>DiklatKu</h3>
-                            <p>Aplikasi untuk monitoring dan penyewaan balai diklat BKPP kota Semarang</p>
-                            <a href="https://github.com/AhmadSholehU/Reservation-app" target="_blank" class="btn">View
-                                on GitHub</a>
-                        </div>
-                    </li>
-                    <li class="carousel-slide">
-                        <div class="project-card">
-                            <img src="img_arhybe.png" alt="Project Screenshot">
-                            <h3>ArhyBe</h3>
-                            <p>Aplikasi untuk monitoring dan klassifikasi jenis aritmia dengan integrasi AIoT</p>
-
-                            <a href="https://github.com/AhmadSholehU/ArhyBe" target="_blank" class="btn">View on
-                                GitHub</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <button class="carousel-btn next">&#10095;</button>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-tight">
+            Hi, I’m Hendi Ahmad. <br>
+            <span class="bg-gradient-to-r from-blue-600 to-purple-500 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">Software Engineer.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            I enjoy designing clean architectures, integrating APIs, and delivering scalable, user-friendly mobile and web solutions tailored for fast-paced startup environments and enterprise systems.
+        </p>
+        
+        <div class="flex justify-center gap-3 flex-wrap mb-10">
+            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold shadow-sm">Flutter</span>
+            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold shadow-sm">Kotlin</span>
+            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold shadow-sm">Java</span>
+            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold shadow-sm">AI/ML</span>
+            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-semibold shadow-sm">AIoT Integration</span>
         </div>
-        <div class="carousel-nav">
-            <button class="carousel-indicator current-slide"></button>
-            <button class="carousel-indicator"></button>
-            <button class="carousel-indicator"></button>
-            <button class="carousel-indicator"></button>
-            <button class="carousel-indicator"></button>
-            <button class="carousel-indicator"></button>
-        </div>
-    </section>
-    <!-- ===== Certificates Section ===== -->
-    <section id="certificates" class="container mx-auto px-6 py-16 text-center reveal">
-        <div class="container">
-            <h2 class="text-3xl font-bold mb-4">Certificates</h2>
-            <p class="text-gray-600 mb-6">Berikut beberapa sertifikat yang telah saya capai selama studi dan internship.</p>
 
-            <div class="certificate-list">
-                <!-- Sertifikat 1 -->
-                <div class="certificate-card">
-                    <embed src="SERTIF.pdf" type="application/pdf" class="certificate-viewer" />
-                    <a href="SERTIF.pdf" target="_blank" class="btn">View / Download</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="container mx-auto px-6 py-16 text-center reveal">
-        <h2 class="text-3xl font-bold mb-4">Contact Me</h2>
-        <p class="text-gray-600 mb-6">Tertarik bekerja sama? Hubungi saya melalui email.</p>
-        <a href="mailto:hendisholeh1@gmail.com"
-            class="px-6 py-3 rounded-xl shadow-md bg-gray-900 text-white hover:bg-gray-700 hover:scale-105 transition transform">
-            Kirim Email
+        <a href="#projects" class="inline-flex items-center gap-2 px-8 py-4 rounded-full shadow-lg shadow-blue-500/20 bg-blue-600 dark:bg-blue-500 text-white font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 hover:-translate-y-1 transition-all duration-300">
+            View My Work
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </a>
     </section>
 
-    <footer class="text-center py-6 bg-white text-gray-500">
-        © 2025 My Portfolio. All rights reserved.
+    <section id="experience" class="py-20 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800/50 reveal">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-slate-900 dark:text-white text-center">Journey & Experience</h2>
+            
+            <div class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-3 md:ml-6 space-y-12">
+                
+                <div class="pl-8 relative group">
+                    <div class="absolute w-4 h-4 bg-blue-500 dark:bg-cyan-400 rounded-full -left-[9px] top-1.5 ring-4 ring-white dark:ring-slate-900 group-hover:scale-125 transition-transform duration-300"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Field Engineer (Telecommunication)</h3>
+                    <p class="text-sm text-blue-600 dark:text-cyan-400 font-semibold mb-3">Oct 2025 - Nov 2025 • Poca Group Central Java</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Performed ground part handling for telecommunication device installations including RRU, AAU, Microwave, and similar equipment.</li>
+                        <li>Ensured installation quality, device readiness, and proper power/optic routing during on-site deployment.</li>
+                    </ul>
+                </div>
+
+                <div class="pl-8 relative group">
+                    <div class="absolute w-4 h-4 bg-slate-300 dark:bg-slate-600 rounded-full -left-[9px] top-1.5 ring-4 ring-white dark:ring-slate-900 group-hover:bg-blue-400 dark:group-hover:bg-cyan-500 group-hover:scale-125 transition-all duration-300"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mobile Developer Intern</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold mb-3">Sept 2024 - Jan 2025 • BKPP Kota Semarang</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Developed the Diklatku mobile application for government institution operations.</li>
+                        <li>Integrated third-party applications and learned new tech stacks for deployment.</li>
+                    </ul>
+                </div>
+
+                <div class="pl-8 relative group">
+                    <div class="absolute w-4 h-4 bg-slate-300 dark:bg-slate-600 rounded-full -left-[9px] top-1.5 ring-4 ring-white dark:ring-slate-900 group-hover:bg-blue-400 dark:group-hover:bg-cyan-500 group-hover:scale-125 transition-all duration-300"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mobile Developer Intern</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold mb-3">Feb 2024 - Jun 2024 • LLDIKTI V YOGYAKARTA</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Developed the EVIRA mobile application, effectively handling large data consumption from APIs.</li>
+                    </ul>
+                </div>
+
+                <div class="pl-8 relative group">
+                    <div class="absolute w-4 h-4 bg-slate-300 dark:bg-slate-600 rounded-full -left-[9px] top-1.5 ring-4 ring-white dark:ring-slate-900 group-hover:bg-blue-400 dark:group-hover:bg-cyan-500 group-hover:scale-125 transition-all duration-300"></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mobile Developer Intern</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 font-semibold mb-3">Jan 2020 - Mar 2020 • CV. Can Creative, Semarang</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 dark:text-slate-400 space-y-2">
+                        <li>Introduced to fundamental layouting and API consumption in a professional software development environment.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-6 container mx-auto max-w-6xl reveal">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900 dark:text-white text-center">Featured Projects</h2>
+        <p class="text-center text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto">A comprehensive collection of mobile applications, AIoT integrations, and tools I've built over the years.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_myfitapp.png" alt="MyFitApp" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">MyFitApp</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">A gym tracker application built with the Flutter framework for robust performance.</p>
+                    <a href="https://github.com/AhmadSholehU/flutter_application_2" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_evira.png" alt="EVIRA" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">EVIRA</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">An application for the Evaluation, Verification, and Data Analysis of Private Higher Education Institutions.</p>
+                    <a href="https://github.com/AhmadSholehU/Evira-mobile" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_arhybe.png" alt="ArhyBe" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">ArhyBe</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">An application for monitoring and classifying arrhythmia types utilizing advanced AIoT integration.</p>
+                    <a href="https://github.com/AhmadSholehU/ArhyBe" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+             <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_fittrack.png" alt="FitTrack" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">FitTrack</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">A comprehensive fitness application tracking daily physical activities and nutritional consumption.</p>
+                    <a href="https://github.com/AhmadSholehU/FitTrack" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_leafapp.png" alt="LeafApp" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">LeafApp</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">A smart application for rice leaf disease detection, implementing TensorFlow Lite.</p>
+                    <a href="https://github.com/AhmadSholehU/LeafApp" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="group bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+                <div class="h-48 bg-slate-100 dark:bg-slate-700/50 flex items-center justify-center p-4 overflow-hidden">
+                    <img src="img_diklatku.png" alt="DiklatKu" class="h-full object-contain group-hover:scale-105 transition-transform duration-500 dark:brightness-90">
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">DiklatKu</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-1">A monitoring and reservation application for the BKPP Semarang City training center.</p>
+                    <a href="https://github.com/AhmadSholehU/Reservation-app" target="_blank" class="inline-flex items-center text-sm font-bold text-blue-600 dark:text-cyan-400 hover:text-blue-800 dark:hover:text-cyan-300">
+                        View on GitHub <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="certificates" class="py-20 bg-blue-50/50 dark:bg-slate-800/20 border-t border-slate-100 dark:border-slate-800/50 reveal">
+        <div class="container mx-auto px-6 max-w-3xl text-center">
+            <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white">Certificates & Achievements</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-8">Official validation of skills and achievements acquired during my academic studies and professional internships.</p>
+            
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-16 h-16 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Official Credentials</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Click the button below to view the comprehensive compilation of my certificates in PDF format.</p>
+                <a href="SERTIF.pdf" target="_blank" class="inline-block px-6 py-3 bg-slate-900 dark:bg-blue-600 text-white font-medium rounded-xl hover:bg-slate-800 dark:hover:bg-blue-500 transition-colors">
+                    View Full Certificate (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-slate-900 dark:bg-black text-center reveal border-t border-slate-800">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Let's Build Something Great</h2>
+            <p class="text-slate-400 mb-10 text-lg">Interested in collaborating or discussing technology? Feel free to reach out to me.</p>
+            <a href="mailto:hendisholeh1@gmail.com" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-blue-600 dark:bg-cyan-500 text-white dark:text-slate-900 font-bold hover:bg-blue-500 dark:hover:bg-cyan-400 hover:scale-105 transition-all duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                Send an Email
+            </a>
+        </div>
+    </section>
+
+    <footer class="text-center py-8 bg-slate-950 dark:bg-black text-slate-500 text-sm">
+        <p>© 2026 Hendi Ahmad. Built with Tailwind CSS.</p>
     </footer>
 
-    <!-- Script -->
     <script>
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        menuBtn.addEventListener("click", () => {
-            mobileMenu.classList.toggle("hidden");
-        });
+        // --- Dark Mode Logic ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeToggleMobileBtn = document.getElementById('themeToggleMobile');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
 
-        ScrollReveal().reveal('.reveal', {
-            distance: '40px',
-            duration: 1000,
-            easing: 'ease-out',
-            origin: 'bottom',
-            interval: 200
-        });
-
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
-        const nextButton = document.querySelector('.carousel-btn.next');
-        const prevButton = document.querySelector('.carousel-btn.prev');
-        const dotsNav = document.querySelector('.carousel-nav');
-        const dots = Array.from(dotsNav.children);
-
-        let currentIndex = 0;
-
-        function updateCarousel(index) {
-            track.style.transform = `translateX(-${index * 100}%)`;
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('current-slide', i === index);
-            });
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('current-slide', i === index);
-            });
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            moonIcon.classList.remove('hidden');
         }
 
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel(currentIndex);
+        // Toggle function
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // --- Mobile Menu Logic ---
+        const menuBtn = document.getElementById("menuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("flex");
         });
 
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateCarousel(currentIndex);
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add("hidden");
+                mobileMenu.classList.remove("flex");
+            });
         });
 
-        dotsNav.addEventListener('click', e => {
-            const targetDot = e.target.closest('button');
-            if (!targetDot) return;
-            currentIndex = dots.findIndex(dot => dot === targetDot);
-            updateCarousel(currentIndex);
+        // --- ScrollReveal ---
+        ScrollReveal().reveal('.reveal', {
+            distance: '30px',
+            duration: 800,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            origin: 'bottom',
+            interval: 150
         });
-
-        // init
-        updateCarousel(currentIndex);
     </script>
-
 </body>
-
 </html>
